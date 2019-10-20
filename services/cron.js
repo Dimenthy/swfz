@@ -11,7 +11,7 @@ var CronJob = cron.CronJob;
 // }, null, true);
 new CronJob('0 * * * * *', function() {
     // common.console("GateWayOTA HeartBeat!!!");
-    common.gatewayHeart();
+    // common.gatewayHeart();
 }, null, true);
 
 

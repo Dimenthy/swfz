@@ -5,7 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 const common = require('./config/common');
-const nodeProcess = require('./services/nodeProcess');
+const baiduOcr = require('./config/baiduOcr');
+const gameOperate = require('./services/gameOperate');
 
 
 
@@ -21,9 +22,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var mqttClient = require('./routes/mqtt');
 var testRouter = require('./routes/test');
 var cronRouter = require('./services/cron');
+var customWindow = require('./services/customWindow');
 
 // app.use('/', indexRouter);
 app.use('/test', testRouter);
@@ -46,11 +47,35 @@ app.use((err, req, res, next) => {
     console.log(err);
     return res.json({'status':-1, 'result':err.stack})
 });
-global.updating = false;
 
+//启动清除截图文件夹
+common.delShootsPath();
 
 //启动获取程序版本
 common.console("Application Name : " + common.getName());
 common.console("Version Info : " + common.getVersion());
+
+customWindow.listAllWindow();
+
+baiduOcr.init();
+gameOperate.init().then( res => {
+    common.console("===============>开始师门")
+    customWindow.SM();
+}).catch(err => common.console(err));
+
+
+
+
+
+//
+
+
+
+
+
+
+
+
+
 
 module.exports = app;

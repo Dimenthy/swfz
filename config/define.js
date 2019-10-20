@@ -2,78 +2,117 @@
  * Created by dimenthy on 2017/8/14.
  */
 // define.js
-
+const path = require("path");
+var PLUG_LOCATION = "D:\\GIT\\swfz\\plug\\";
 
 var define = {
+    GAME_NAME : 'sw3main',
+    SHOOT_LOCATION : "D:\\GIT\\swfz\\shoots\\",
 
-    //测试环境
-    // NETWORK_INTERFACE_NAME : "以太网",
-    // OTA_FLODER_PATH : "E:\\OTA",
-    // MQTT_HOST_ONLINE : "mqtt://io.stsctech.com:1883",
-    // MQTT_HOST_LOCAL : "mqtt://192.168.1.13:1883",
-    // REDIS_HOST_LOCAL : "192.168.1.13",
-    // LORAOS_PATH  : "E:\\OTA\\LoraOSTest",
+    // CMDOW_PATH : "D:\\PROGRAM_LIST\\nodejs\\swscript\\plug\\cmdow.exe",
+    // CMDOW_CMD : {
+    //     LIST : ' /L ',
+    //     POS : ' /P '
+    // },
+    LIST_ALL_WINDOW  : PLUG_LOCATION + "cmdow.exe /t /P ",
 
-    //国内
-    NETWORK_INTERFACE_NAME : "eth0",
-    OTA_FLODER_PATH : "/home/OTA",
-    MQTT_HOST_ONLINE : "mqtt://io.stsctech.com:1883",
-    MQTT_HOST_LOCAL : "mqtt://127.0.0.1:1883",
-    REDIS_HOST_LOCAL : "127.0.0.1",
-    LORAOS_PATH  : '/home/LoraOS',
-
-    //新加坡
-    // NETWORK_INTERFACE_NAME : "eth0",
-    // OTA_FLODER_PATH : "/home/OTA",
-    // MQTT_HOST_ONLINE : "mqtt://loragw.advastech.com:1883",
-    // MQTT_HOST_LOCAL : "mqtt://127.0.0.1:1883",
-    // REDIS_HOST_LOCAL : "127.0.0.1",
-    // LORAOS_PATH  : '/home/LoraOS',
-
-
-    GATWAY_MIDDLE : "FFFE",
-    // NETWORK_PING_URL : "poc.stsctech.com",
-
-
-    MQTT_USERNAME_ONLINE : 'TYKJadmin',
-    MQTT_PASSWORD_ONLINE : 'TYKJ2018.',
-
-
-    MQTT_USERNAME_LOCAL : 'TYKJadmin',
-    MQTT_PASSWORD_LOCAL : 'TYKJ2018.',
-
-
-    REDIS_PORT_LOCAL : "6379",
-    REDIS_PASS_LOCAL : "TYKJ2018.",
-
-    UPDATE_PROCESS : {
-        '-2' : "Command ID Error",
-        '-1' : "An Upadating is Running",
-        '0' : "Receive Message",
-        '1' : "Starting Download",
-        '2' : "Download Done",
-        '3' : "Starting Unzip",
-        '4' : "Unzip Done",
-        '5' : "Starting Replace",
-        '6' : "Replace Done",
-        '7' : "Starting RestartService",
-        '8' : "RestartService Error",
-        '9' : "RestartService Success",
-        '10' : "Update FAILED",
+    SCRENN_SHOOT : {
+        "CMD" : {
+            "SAVE" :   " savescreenshot "
+        },
+        'X86' : PLUG_LOCATION + "nircmd" + path.sep + "nircmd" + path.sep + "nircmd.exe ",
+        'X64' : PLUG_LOCATION + "nircmd" + path.sep + "nircmd-x64" + path.sep + "nircmd.exe "
     },
 
-    SOFT_LIST : {
-        "1" : "LoraOS",
-        "2" : "loraserver",
-        "3" : "lora-app-server",
+    BAIDU_AI :{
+        HOST : 'https://aip.baidubce.com',
+        APP_ID:'17569579',
+        API_KEY : 'yxEeiBdC1vEk8uE3QsG5hoGw',
+        SECRET_KEY : 'VUVnEZz4FM6IhRFgNikKWFYNntnS88oI',
     },
+    WORDS_PP_PERCENT: 50,
+    WORDS : {
+        DONE : {NAME : ['完','成']},
+        CONTINUE_MISSION : {NAME : ['继','续','领','取','任','务']},
+    },
+    THINGS : {
+        'HOME' : {  //门派
+            HOTKEY : 'f1'
+        },
+        'FXF' : {   //飞行符
+            HOTKEY : 'f2'
+        },
+        'noMonster' : { //驱魔香
+            HOTKEY : 'f3'
+        },
+        MAP : {
+            HOTKEY : 'tab'
+        },
+        EXIT : {HOTKEY :'escape'}
+    },
+    TYPE_PP_PERCENT : 66.6,
+    TYPE :{
+        'SM' : {
+            NAME : ['师','门'],
+            TYPE : {
+                'SJ' : {
+                    NAME:['收','集','物','资'],
+                    TYPE : {
+                        'JY' : {NAME : ['交','易','中','心']}, //交易中心
+                        'DP' : {NAME : ['武','器','服','饰','店'] , POS : {out : {l:315,t:360} , in:{l:436,t:495}}},  //武器店 服装店
+                        'YD' : {NAME : ['长','安','药','店']}, //药店
+                    }
+                },
+                'TZ' : {NAME:['挑','战']}
+            }
 
-
-
-    LORAOS_RESTART_CMD  : "/usr/bin/supervisorctl restart LoraOS",
-
-
-
+        }
+    },
+    PLACE_PP_PERCENT : 50,
+    PLACE : {
+        'AL' : {
+            CITY : true,
+            NAME : ['傲','来','国'],
+            FXF_NUM : 2,
+        },
+        'NE' : {
+            CITY : true,
+            NAME : ['女','儿','国'],
+            FXF_NUM : 5,
+        },
+        'CA' : {
+            CITY : true,
+            NAME : ['长','安','城'],
+            FXF_NUM : 1,
+        },
+        'QH' : {
+            CITY : true,
+            NAME : ['青','河','镇'],
+            FXF_NUM : 3,
+        },
+        'LX' : {
+            CITY : true,
+            NAME : ['临','仙','镇'],
+            FXF_NUM : 4,
+        },
+        'DF' : {
+            CITY : false,
+            NAME : ['幽','冥','地','府'],
+            FXF_NUM : 0,
+            CITY_NEAR : 'NE'
+        },
+        'HS' : {
+            CITY : false,
+            NAME : ['佛','门'],
+            FXF_NUM : 0,
+            CITY_NEAR : 'CA',
+            TEACHER_POS: {
+                out : {l : 408 , t : 321},
+                in : {l:441,t:330},
+            },
+            MISSION_POS : {l:319,t:359}
+        },
+    },
 
 
 
