@@ -10,7 +10,12 @@ robot.setKeyboardDelay(3);
 
 
 var gameOperate = {
-    mouseMove : (left , top , smooth=true) => {
+    mouseMove : (left , top , smooth=true, inGame=true,windowNum = 0) => {
+        var windowItem = common.global.windowList[windowNum];
+        if(inGame){
+            left = windowItem['left'] + left;
+            top = windowItem['top'] + top;
+        }
         if(smooth){
             robot.moveMouseSmooth(left ,top);  //移到游戏窗口
             return;
@@ -22,7 +27,7 @@ var gameOperate = {
     },
     //获取游戏焦点
     getGamePoint : () => {
-        gameOperate.mouseMove(common.global.windowList[0]['left']+400, common.global.windowList[0]['top']+300,false);  //移到游戏窗口
+        gameOperate.mouseMove(common.define.WINDOW_SIZE.WIDTH/2, common.define.WINDOW_SIZE.HEIGHT/2,false);  //移到游戏窗口
         gameOperate.mouseClick();//获取焦点
     },
     init : ()=> {

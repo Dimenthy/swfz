@@ -24,10 +24,9 @@ var customWindow = {
 
     SM : () =>{
         if(common.global.windowList.length <= 0){
-            common.console("获取游戏窗口失败 ，请将游戏窗口置于顶部");
+            common.console("获取游戏窗口失败 ，请勿将游戏窗口最小化");
             return;
         }
-
         var fileName = common.getShoot(common.global.windowList[0]['left']+529,common.global.windowList[0]['top']+166,230,45);
         var filePath = common.define.SHOOT_LOCATION + fileName;
         baiduOcr.generalBasic(filePath).then(res => {
@@ -52,16 +51,16 @@ var customWindow = {
                 common.sleepSync(1);
                 gameOperate.openMap();
                 common.sleepSync(1);
-                gameOperate.mouseMove(common.global.windowList[0]['left']+common.global.role.home.TEACHER_POS.out.l, common.global.windowList[0]['top']+common.global.role.home.TEACHER_POS.out.t);  //移到游戏窗口
+                gameOperate.mouseMove(common.global.role.home.TEACHER_POS.out.l, common.global.role.home.TEACHER_POS.out.t);  //移到游戏窗口
                 gameOperate.mouseClick();
                 common.sleepSync(10);
                 if(common.global.role.home.TEACHER_POS.hasOwnProperty('in')){
                     gameOperate.openMap();
-                    gameOperate.mouseMove(common.global.windowList[0]['left']+common.global.role.home.TEACHER_POS.in.l, common.global.windowList[0]['top']+common.global.role.home.TEACHER_POS.in.t);  //移到游戏窗口
+                    gameOperate.mouseMove(common.global.role.home.TEACHER_POS.in.l, common.global.role.home.TEACHER_POS.in.t);  //移到游戏窗口
                     gameOperate.mouseClick();
                     common.sleepSync(10);
                 }
-                gameOperate.mouseMove(common.global.windowList[0]['left']+common.global.role.home.MISSION_POS.l, common.global.windowList[0]['top']+common.global.role.home.MISSION_POS.t);  //移到游戏窗口
+                gameOperate.mouseMove(common.global.role.home.MISSION_POS.l, common.global.role.home.MISSION_POS.t);  //移到游戏窗口
                 gameOperate.mouseClick();//领取任务点击按钮
                 gameOperate.exit();
             }
@@ -73,14 +72,14 @@ var customWindow = {
 
             if(common.checkMissionDone(mission_title)){
                 gameOperate.goHome();
-                gameOperate.mouseMove(common.global.windowList[0]['left']+710, common.global.windowList[0]['top']+188);  //移到游戏窗口
+                gameOperate.mouseMove(710, 188);  //移到游戏窗口
                 gameOperate.mouseClick();
                 return;
             }
             var city_fly_num = gameOperate.getCityFlyNum(missionPlace);
             gameOperate.goCity(city_fly_num); //飞行符飞到城市
             common.sleepSync(1);
-            gameOperate.mouseMove(common.global.windowList[0]['left']+710, common.global.windowList[0]['top']+188);  //移到游戏窗口
+            gameOperate.mouseMove(710, 188);  //移到游戏窗口
             common.sleepSync(1);
             gameOperate.mouseClick();//点击自动寻路
             if(missionType['2'] == 'SJ'){  //若为收集物资
@@ -88,12 +87,12 @@ var customWindow = {
                 common.console("收集物资内容：" + common.define.TYPE.SM.TYPE.SJ.TYPE[sjType['1']]['NAME'] );
                 var sjTypeObj = common.define.TYPE.SM.TYPE.SJ.TYPE[sjType['1']];
                 common.sleepSync(10);
-                gameOperate.mouseMove(common.global.windowList[0]['left']+sjTypeObj.POS.out.l, common.global.windowList[0]['top']+sjTypeObj.POS.out.t);  //移到游戏窗口
+                gameOperate.mouseMove(sjTypeObj.POS.out.l, sjTypeObj.POS.out.t);  //移到游戏窗口
                 common.sleepSync(1);
                 gameOperate.mouseClick();
                 if(sjTypeObj.POS.hasOwnProperty('in')){
                     common.sleepSync(2);
-                    gameOperate.mouseMove(common.global.windowList[0]['left']+sjTypeObj.POS.in.l, common.global.windowList[0]['top']+sjTypeObj.POS.in.t);  //移到游戏窗口
+                    gameOperate.mouseMove(sjTypeObj.POS.in.l, sjTypeObj.POS.in.t);  //移到游戏窗口
                     common.sleepSync(1);
                     gameOperate.mouseClick();
                     common.sleepSync(1);
