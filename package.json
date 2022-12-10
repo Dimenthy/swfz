@@ -16,7 +16,7 @@
     "debug": "~2.6.9",
     "decompress-unzip": "^4.0.1",
     "download": "^7.1.0",
-    "express": "~4.16.0",
+    "express": "~4.18.2",
     "fast-xml-parser": "^3.12.16",
     "format-datetime": "^1.0.2",
     "he": "^1.2.0",
@@ -34,6 +34,6 @@
     "urlencode": "^1.1.0"
   },
   "devDependencies": {
-    "body-parser": "^1.18.3"
+    "body-parser": "^1.20.1"
   }
 }
